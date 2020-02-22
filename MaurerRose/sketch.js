@@ -3,12 +3,19 @@
 /*let n = 6;
 let d = 71;*/
 
-let n = 3;
-let d = 47;
+let n = 0;
+let d = 0;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(displayWidth, displayHeight);
   angleMode(DEGREES);
+}
+
+function mousePressed() {
+  if (mouseX > 0 && mouseX < displayWidth && mouseY > 0 && mouseY < displayHeight) {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  }
 }
 
 function draw() {
@@ -18,11 +25,11 @@ function draw() {
   
   noFill();
   beginShape();
-  stroke(200,200,255,100);
+  stroke(0,0,255,200);
   strokeWeight(1);
   for (let i = 0; i < 360; i++) {
     let k = i * d;
-    let r = 150 * sin(n*k);
+    let r = displayHeight / 2.5 * sin(n*k);
     let x = r * cos(k);
     let y = r * sin(k);
     vertex(x,y);
@@ -30,14 +37,16 @@ function draw() {
   endShape();
   
   beginShape();
-  stroke(0,0,255,200);
+  stroke(255,0,255,200);
   strokeWeight(3);
   for (let i = 0; i < 360; i++) {
     let k = i;
-    let r = 150 * sin(n*k);
+    let r = displayHeight / 2.5 * sin(n*k);
     let x = r * cos(k);
     let y = r * sin(k);
     vertex(x,y);
   }
   endShape();
+  n = n+=0.002;
+  d = d+=0.006;
 }
