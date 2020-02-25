@@ -1,4 +1,4 @@
-int order = 8;
+int order = 6;
 int N = int(pow(2, order));
 int total = N * N; 
 PVector[] path = new PVector[total];
@@ -62,17 +62,17 @@ void draw() {
   noFill();
 
   //beginShape();
-  //for (int i = 1; i <  counter; i++) { // animated version
-  for (int i = 1; i <  total; i++) {
+  for (int i = 1; i <  counter; i++) { // animated version
+  //for (int i = 1; i <  total; i++) {
     float h = map(i, 0, path.length, 0, 360);
     stroke(h, 255, 255);
     line(path[i].x, path[i].y,path[i-1].x, path[i-1].y);
   }
   //endShape();
 
-  counter+=(pow(order,2));
-  if (counter >= path.length) {
-    counter = 0;
+  counter+=N;
+  if (counter > path.length) {
+    noLoop();
   }
 
   /*strokeWeight(1);
