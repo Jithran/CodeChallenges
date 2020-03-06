@@ -2,11 +2,12 @@ class Rod {
   ArrayList<Disc> disc = new ArrayList<Disc>();
 
   float x;
-  float y = 155.0;
+  float y = 50;
   char selector;
 
-  int height= 230;
+  int height= rodheight;
   int width = 10;
+  int basewidth = 10 * n + 40;
 
   Rod(char selector_, float x_) {
     this.x = x_;
@@ -15,9 +16,8 @@ class Rod {
 
   void show() {
     fill(200, 100, 255);
-    rectMode(CENTER);
-    rect(x, y, width, height);
-    rect(x, y+(height/2), width+100, 20);
+    rect(x-(width/2), y, width, height);
+    rect(x-((basewidth)/2), y+height, basewidth, 20);
 
     for (int i=0; i<disc.size(); i++) {
       disc.get(i).show();
@@ -27,7 +27,7 @@ class Rod {
   void addDisc(Disc disc) {
     if (disc != null) {
       disc.x = this.x;
-      disc.y = 245-(disc.height * this.disc.size());
+      disc.y = (y+height)-(disc.height * (this.disc.size()+1));
       this.disc.add(disc);
     }
   }
